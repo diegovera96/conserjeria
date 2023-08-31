@@ -50,8 +50,6 @@ public class Main {
         Optional<Persona> oPersona = pf.byRut(999999);
         oPersona.ifPresent(p -> log.debug("Persona from db: {}", p));
 
-
         log.debug("Done. :)");
-
     }
 }
