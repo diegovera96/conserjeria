@@ -1,6 +1,17 @@
 package cl.ucn.disc.as.model.exceptions;
 
-public class IllegalDomainException extends Throwable {
-    public IllegalDomainException(String s) {
+/**
+ * Domain Violation Exception.
+ *
+ * @author Arquitectura de Software
+ */
+public class IllegalDomainException extends RuntimeException {
+    /**
+     * Th Constructor.
+     *
+     * @param message to use.
+     */
+    public IllegalDomainException(String message) {
+        super (message);
     }
 }
