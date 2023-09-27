@@ -3,7 +3,10 @@ package cl.ucn.disc.as;
 
 import cl.ucn.disc.as.dao.PersonaFinder;
 import cl.ucn.disc.as.model.Contrato;
+import cl.ucn.disc.as.model.Edificio;
 import cl.ucn.disc.as.model.Persona;
+import cl.ucn.disc.as.services.Sistema;
+import cl.ucn.disc.as.services.SistemaImpl;
 import io.ebean.DB;
 import io.ebean.Database;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +37,17 @@ public class Main {
         //get the database
         Database db = DB.getDefault();
 
+        Sistema sistema = new SistemaImpl(db);
+
+        Edificio edificio = Edificio.builder()
+                .nombre("Y1")
+                .direccion("Angamos #0610")
+                .build();
+        log.debug("Edificio before db: {}", edificio);
+
+        edificio = sistema.add(edificio);
+        log.debug("Edificio afer db: {}", edificio);
+
         Persona persona = Persona.builder()
                 .rut("19100636-4")
                 .nombre("Diego")
@@ -59,20 +73,5 @@ public class Main {
         log.debug("Done. :)");
 
         log.debug("********************************************************************");
-
-        //Date fecha = new Date();
-        //DateFormat formateador= new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-        //try {
-        //    fecha = formateador.parse("31/08/2023 15:50:00");
-        //    System.out.println("Fecha parseada: " + fecha);
-        //} catch (java.text.ParseException e) {
-        //    System.out.println("Error al parsear la fecha: " + e.getMessage());
-        //}
-        //Contrato contrato = Contrato.builder()
-        //                    .fechaPago(fecha)
-        //                    .build();
-
-        //System.out.println("Diferencia: " + contrato.diferenciaDeDias(fecha));
-        //log.debug("The Contrato: ${}", contrato);
     }
 }

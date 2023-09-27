@@ -18,6 +18,16 @@ create table departamento (
   constraint pk_departamento primary key (id)
 );
 
+create table edificio (
+  id                            integer not null,
+  nombre                        varchar(255) not null,
+  direccion                     varchar(255) not null,
+  version                       integer not null,
+  created                       timestamp not null,
+  modified                      timestamp not null,
+  constraint pk_edificio primary key (id)
+);
+
 create table persona (
   id                            integer not null,
   rut                           varchar(255) not null,
