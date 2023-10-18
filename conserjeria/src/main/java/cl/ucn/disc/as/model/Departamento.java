@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import java.time.Instant;
 
 @ToString
 @AllArgsConstructor
@@ -16,11 +17,20 @@ public class Departamento extends BaseModel  {
      * The Apartment Number
      */
     @NotNull
-    private Integer departamento;
+    private Integer numero;
 
     /**
      * The Piso
      */
     @NotNull
     private String piso;
+
+    public static class DepartamentoBuilder {
+        public Departamento build() {
+            return new Departamento(
+                    this.numero,
+                    this.piso
+            );
+        }
+    }
 }

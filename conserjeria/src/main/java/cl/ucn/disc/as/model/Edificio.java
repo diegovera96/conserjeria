@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
+import java.time.Instant;
 
 /**
  * Class Edificio
@@ -33,4 +34,13 @@ public class Edificio extends BaseModel {
     @Getter
     @NotNull
     private String direccion;
+
+    public static class EdificioBuilder {
+        public Edificio build() {
+            return new Edificio(
+                    this.nombre,
+                    this.direccion
+            );
+        }
+    }
 }

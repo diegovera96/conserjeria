@@ -1,12 +1,15 @@
 package cl.ucn.disc.as.services;
 
+import cl.ucn.disc.as.model.Departamento;
 import cl.ucn.disc.as.model.Edificio;
+import cl.ucn.disc.as.model.Persona;
+import cl.ucn.disc.as.model.Contrato;
 import io.ebean.annotation.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.ToString;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
+import java.time.Instant;
 
 /**
  * System Operations
@@ -20,4 +23,16 @@ public interface Sistema {
      * @param edificio a agregar
      */
    Edificio add(Edificio edificio);
+   /*
+   * Agregar una persona al sistema
+   *
+   * @param edificio a agregar
+   * */
+   Persona add(Persona persona);
+
+   Departamento addDepartamento(Departamento departamento, Edificio edificio);
+   Departamento addDepartamento(Departamento departamento, Long idEdificio);
+
+   Contrato realizarContrato(Persona duenio, Departamento departamento, Instant fechaPago);
+   //Contrato realizarContrato(Long idDuenio, Long idDepartamento, Instant fechaPago);
 }

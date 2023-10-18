@@ -1,9 +1,10 @@
 package cl.ucn.disc.as.model;
 
 import io.ebean.annotation.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.ToString;
+import lombok.*;
+
+import cl.ucn.disc.as.model.Departamento;
+import cl.ucn.disc.as.model.Persona;
 
 import javax.persistence.Entity;
 import java.time.Duration;
@@ -14,17 +15,50 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Entity
+@Getter
+
 public class Contrato extends BaseModel {
+    @NotNull
+    @Setter
+    private Persona persona;
+
+    @NotNull
+    @Setter
+    private Departamento departamento;
 
     /**
      *The Contador
      */
     @NotNull
-    private Date fechaPago;
+    @Setter
+    private Instant fechaPago;
 
-    public long diferenciaDeDias(Date fecha) {
-        Instant ahora = Instant.now();
-        Duration diferencia = Duration.between(ahora, fecha.toInstant());
-        return diferencia.toMinutes();
+    /*@NotNull
+    @Setter
+    private Long idDuenio;
+
+    @NotNull
+    @Setter
+    private Long idDepartamento;*/
+
+
+
+    public static class ContratoBuilder {
+
+        public Contrato build() {
+
+            return new Contrato(
+                    this.persona,
+                    this.departamento,
+                    this.fechaPago
+            );
+        }
+        /*public Contrato build() {
+            return new Contrato(
+                    this.idDuenio,
+                    this.idDepartamento,
+                    this.fechaPago
+            );
+        }*/
     }
 }

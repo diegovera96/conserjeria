@@ -88,16 +88,4 @@ public class Persona extends BaseModel {
             );
         }
     }
-
-    /**
-     * The Contrato
-     */
-    //@NotNull
-    //private String contrato;
-
-    /**
-     * The Departamento
-     */
-    //@NotNull
-    //private int departamento;
 }
