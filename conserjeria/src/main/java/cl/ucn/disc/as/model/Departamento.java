@@ -3,6 +3,7 @@ package cl.ucn.disc.as.model;
 import io.ebean.annotation.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @Entity
+@Getter
 public class Departamento extends BaseModel  {
     /**
      * The Apartment Number

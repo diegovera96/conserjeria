@@ -8,17 +8,13 @@ import cl.ucn.disc.as.model.Persona;
 import cl.ucn.disc.as.model.query.QPersona;
 import io.ebean.Finder;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.Optional;
-
 /**
  * The Finder of Persona.
  *
  * @author Diego Urrutia-Astorga.
  */
 public class PersonaFinder extends Finder<Long, Persona> {
-
-
     /**
      * The Constructor.
      */
@@ -32,7 +28,7 @@ public class PersonaFinder extends Finder<Long, Persona> {
      * @param rut to use.
      * @return the Persona.
      */
-    public Optional<Persona> byRut(@NotNull String rut) {
+    public Optional<Persona> byRut(@NotNull Integer rut) {
         return new QPersona().rut.eq(rut).findOneOrEmpty();
     }
 }

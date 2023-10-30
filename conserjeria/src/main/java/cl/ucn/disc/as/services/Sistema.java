@@ -4,12 +4,15 @@ import cl.ucn.disc.as.model.Departamento;
 import cl.ucn.disc.as.model.Edificio;
 import cl.ucn.disc.as.model.Persona;
 import cl.ucn.disc.as.model.Contrato;
+import cl.ucn.disc.as.model.Pago;
 import io.ebean.annotation.NotNull;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
 import java.time.Instant;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * System Operations
@@ -34,5 +37,9 @@ public interface Sistema {
    Departamento addDepartamento(Departamento departamento, Long idEdificio);
 
    Contrato realizarContrato(Persona duenio, Departamento departamento, Instant fechaPago);
-   //Contrato realizarContrato(Long idDuenio, Long idDepartamento, Instant fechaPago);
+   Contrato realizarContrato(Long idDuenio, Long idDepartamento, Instant fechaPago);
+
+   List<Persona> getPersona();
+   List<Contrato> getContrato();
+   List<Pago> getPago();
 }

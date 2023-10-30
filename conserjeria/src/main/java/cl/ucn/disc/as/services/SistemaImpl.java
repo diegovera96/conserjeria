@@ -4,6 +4,7 @@ import cl.ucn.disc.as.model.Edificio;
 import cl.ucn.disc.as.model.Persona;
 import cl.ucn.disc.as.model.Departamento;
 import cl.ucn.disc.as.model.Contrato;
+import cl.ucn.disc.as.model.Pago;
 import io.ebean.Database;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
 import javax.persistence.Entity;
 import javax.persistence.PersistenceException;
 import java.time.Instant;
+import java.util.List;
+import java.util.ArrayList;
 
 @Slf4j
 @Getter
@@ -21,6 +24,9 @@ public class SistemaImpl implements Sistema {
         this.database = database;
     }
     private final Database database;
+    private final List<Contrato> contratos = new ArrayList<>();
+    private final List<Persona> personas = new ArrayList<>();
+    private final List<Pago> pagos = new ArrayList<>();
 
     /**
      *{@inheritDoc}
@@ -82,7 +88,7 @@ public class SistemaImpl implements Sistema {
         }
     }
 
-    /*public Contrato realizarContrato(@NotNull Long idDuenio, @NotNull Long idDepartamento, @NotNull Instant fechaPago){
+    public Contrato realizarContrato(@NotNull Long idDuenio, @NotNull Long idDepartamento, @NotNull Instant fechaPago){
         try{
             Contrato contrato = new Contrato(idDuenio, idDepartamento, fechaPago);
             contrato.setFechaPago(fechaPago);
@@ -92,6 +98,23 @@ public class SistemaImpl implements Sistema {
             log.error("Error", ex);
             throw new SistemaException("Error al agregar un contrato", ex);
         }
-        return;
-    }*/
+    }
+
+    @Override
+    public List<Persona> getPersona() {
+        this.database.find(Persona.class).findList().addAll(personas);
+        return personas;
+    }
+
+    @Override
+    public List<Contrato> getContrato() {
+        this.database.find(Contrato.class).findList().addAll(contratos);
+        return contratos;
+    }
+
+    @Override
+    public List<Pago> getPago() {
+        this.database.find(Pago.class).findList().addAll(pagos);
+        return pagos;
+    }
 }

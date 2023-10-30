@@ -9,6 +9,9 @@ import cl.ucn.disc.as.services.Sistema;
 import cl.ucn.disc.as.services.SistemaImpl;
 import io.ebean.DB;
 import io.ebean.Database;
+
+import cl.ucn.disc.as.ui.ApiRestServer;
+import cl.ucn.disc.as.ui.WebController;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.DatabaseMetaData;
@@ -31,6 +34,13 @@ public class Main {
     public static void main(String[] args){
 
         log.debug("Starting Main..");
+        ApiRestServer.start(7070, new WebController());
+
+        log.debug("Done. :)");
+
+
+
+        /*log.debug("Starting Main..");
 
         log.debug("Starting Main..");
 
@@ -72,6 +82,6 @@ public class Main {
 
         log.debug("Done. :)");
 
-        log.debug("********************************************************************");
+        log.debug("********************************************************************");*/
     }
 }

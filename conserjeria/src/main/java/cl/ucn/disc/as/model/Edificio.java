@@ -19,19 +19,18 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @Entity
+@Getter
 public class Edificio extends BaseModel {
 
     /**
      * The Name
      */
-    @Getter
     @NotNull
     private String nombre;
 
     /**
      * The direccion
      */
-    @Getter
     @NotNull
     private String direccion;
 
