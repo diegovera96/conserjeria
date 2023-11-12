@@ -36,7 +36,7 @@ public final class WebController implements RoutesConfigurator{
         });
         app.get("/persona/rut/{rut}", ctx->{
             String rut = ctx.pathParam("rut");
-            Optional<Persona> oPersona = this.sistema.getPersona();
+            Optional<Persona> oPersona = this.sistema.getPersona(rut);
             ctx.json(oPersona.orElseThrow(()-> new NotFoundResponse("Can't find Persona with rut:"+ rut)));
         });
     }

@@ -19,7 +19,6 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @Entity
-@Getter
 @Setter
 public class Pago extends BaseModel{
 
@@ -27,9 +26,11 @@ public class Pago extends BaseModel{
      * The fecha de pago
      */
     @NotNull
+    @Getter
     private Instant fechaPago;
 
     @NotNull
+    @Getter
     private Integer monto;
 
     public static class PagoBuilder {

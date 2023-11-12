@@ -1,10 +1,7 @@
 package cl.ucn.disc.as.model;
 
 import io.ebean.annotation.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import java.time.Instant;
@@ -19,12 +16,14 @@ public class Departamento extends BaseModel  {
      * The Apartment Number
      */
     @NotNull
+    @Setter
     private Integer numero;
 
     /**
      * The Piso
      */
     @NotNull
+    @Setter
     private String piso;
 
     public static class DepartamentoBuilder {

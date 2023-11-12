@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import java.time.Instant;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Optional;
+
 
 /**
  * System Operations
@@ -34,12 +36,14 @@ public interface Sistema {
    Persona add(Persona persona);
 
    Departamento addDepartamento(Departamento departamento, Edificio edificio);
-   Departamento addDepartamento(Departamento departamento, Long idEdificio);
+   //Departamento addDepartamento(Departamento departamento, Long idEdificio);
 
    Contrato realizarContrato(Persona duenio, Departamento departamento, Instant fechaPago);
-   Contrato realizarContrato(Long idDuenio, Long idDepartamento, Instant fechaPago);
+   //Contrato realizarContrato(Long idDuenio, Long idDepartamento, Instant fechaPago);
 
    List<Persona> getPersona();
+   Optional<Persona> getPersona(String rut);
    List<Contrato> getContrato();
-   List<Pago> getPago();
+   List<Pago> getPago(String rut);
+   void populate();
 }

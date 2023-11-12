@@ -15,6 +15,13 @@ import javax.persistence.PersistenceException;
 import java.time.Instant;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Optional;
+import java.util.Locale;
+import com.github.javafaker.Faker;
+import com.github.javafaker.service.FakeValues;
+import com.github.javafaker.service.FakeValuesService;
+import com.github.javafaker.service.RandomService;
+
 
 @Slf4j
 @Getter
@@ -35,47 +42,47 @@ public class SistemaImpl implements Sistema {
     public Edificio add(@NotNull Edificio edificio){
         try {
             this.database.save(edificio);
+            return edificio;
         } catch (PersistenceException ex) {
             //TODO: save the exception
             log.error("Error", ex);
             throw new SistemaException("Error al agregar un edificio", ex);
         }
-        return edificio;
     }
 
     @Override
     public Persona add(@NotNull Persona persona){
         try{
             this.database.save(persona);
+            return persona;
         } catch (PersistenceException ex){
             log.error("Error", ex);
             throw new SistemaException("Error al agregar una persona", ex);
         }
-        return persona;
     }
-
+    @Override
     public Departamento addDepartamento(@NotNull Departamento departamento, @NotNull Edificio edificio){
         try{
             this.database.save(departamento);
             this.database.save(edificio);
+            return departamento;
         } catch (PersistenceException ex){
             log.error("Error", ex);
             throw new SistemaException("Error al agregar un departamento", ex);
         }
-        return departamento;
     }
-
+    /**@Override
     public Departamento addDepartamento(@NotNull Departamento departamento, @NotNull Long idEdificio){
         try{
             this.database.save(departamento);
             this.database.save(idEdificio);
+            return departamento;
         } catch (PersistenceException ex){
             log.error("Error", ex);
             throw new SistemaException("Error al agregar un departamento", ex);
         }
-        return departamento;
-    }
-
+    }**/
+    @Override
     public Contrato realizarContrato(@NotNull Persona duenio, @NotNull Departamento departamento, @NotNull Instant fechaPago){
         try{
             Contrato contrato = new Contrato(duenio, departamento, fechaPago);
@@ -87,7 +94,7 @@ public class SistemaImpl implements Sistema {
             throw new SistemaException("Error al agregar un contrato", ex);
         }
     }
-
+    /*@Override
     public Contrato realizarContrato(@NotNull Long idDuenio, @NotNull Long idDepartamento, @NotNull Instant fechaPago){
         try{
             Contrato contrato = new Contrato(idDuenio, idDepartamento, fechaPago);
@@ -98,23 +105,66 @@ public class SistemaImpl implements Sistema {
             log.error("Error", ex);
             throw new SistemaException("Error al agregar un contrato", ex);
         }
-    }
+    }*/
 
     @Override
     public List<Persona> getPersona() {
-        this.database.find(Persona.class).findList().addAll(personas);
+        List<Persona> personas = database.find(Persona.class).findList();
         return personas;
     }
 
     @Override
     public List<Contrato> getContrato() {
-        this.database.find(Contrato.class).findList().addAll(contratos);
+        List<Contrato> contratos = database.find(Contrato.class).findList();
         return contratos;
     }
 
     @Override
-    public List<Pago> getPago() {
-        this.database.find(Pago.class).findList().addAll(pagos);
+    public Optional<Persona> getPersona(String rut) {
+        Persona persona = database.find(Persona.class)
+                .where()
+                .eq("rut", rut)
+                .findOne();
+
+        return Optional.ofNullable(persona);
+    }
+
+    @Override
+    public List<Pago> getPago(String rut) {
+        List<Pago> pagos = database.find(Pago.class)
+                .where()
+                .eq("rut", rut)
+                .findList();
         return pagos;
+    }
+
+
+    @Override
+    public void populate() {
+        {
+            Persona persona = Persona.builder()
+                    .rut("19100636-4")
+                    .nombre("Diego")
+                    .apellidos("Vera")
+                    .email("diego@gmail.com")
+                    .telefono("11111111")
+                    .build();
+            this.database.save(persona);
+        }
+
+        Locale locale = new Locale("es-CL");
+        FakeValuesService fvs = new FakeValuesService(locale, new RandomService());
+        Faker faker = new Faker(locale);
+
+        for (int i = 0; i < 1000; i++) {
+            Persona persona = Persona.builder()
+                    .rut(fvs.bothify("#######-#"))
+                    .nombre(faker.name().firstName())
+                    .apellidos(faker.name().lastName())
+                    .email(fvs.bothify("???###@gmail.com"))
+                    .telefono(fvs.bothify("+569########"))
+                    .build();
+            this.database.save(persona);
+        }
     }
 }

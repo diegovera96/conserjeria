@@ -104,7 +104,7 @@ public final class ApiRestServer{
             config.compression.gzipOnly(9);
 
             config.requestLogger.http((ctx, ms)->{
-                log.debug("servered: {} in {} ms.", ctx.fullUrl(), ms);
+                log.debug("served: {} in {} ms.", ctx.fullUrl(), ms);
             });
             //config.pluggins.enableDevLoggin();
         });

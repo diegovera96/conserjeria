@@ -13,6 +13,8 @@ import io.ebean.Database;
 import cl.ucn.disc.as.ui.ApiRestServer;
 import cl.ucn.disc.as.ui.WebController;
 import lombok.extern.slf4j.Slf4j;
+import io.javalin.Javalin;
+
 
 import java.sql.DatabaseMetaData;
 import java.text.DateFormat;
@@ -34,7 +36,9 @@ public class Main {
     public static void main(String[] args){
 
         log.debug("Starting Main..");
-        ApiRestServer.start(7070, new WebController());
+        Javalin app = ApiRestServer.start(7070, new WebController());
+
+        app.stop();
 
         log.debug("Done. :)");
 

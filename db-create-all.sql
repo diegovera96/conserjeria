@@ -10,7 +10,7 @@ create table contrato (
 
 create table departamento (
   id                            integer not null,
-  departamento                  integer not null,
+  numero                        integer not null,
   piso                          varchar(255) not null,
   version                       integer not null,
   created                       timestamp not null,
@@ -26,6 +26,16 @@ create table edificio (
   created                       timestamp not null,
   modified                      timestamp not null,
   constraint pk_edificio primary key (id)
+);
+
+create table pago (
+  id                            integer not null,
+  fecha_pago                    timestamp not null,
+  monto                         integer not null,
+  version                       integer not null,
+  created                       timestamp not null,
+  modified                      timestamp not null,
+  constraint pk_pago primary key (id)
 );
 
 create table persona (

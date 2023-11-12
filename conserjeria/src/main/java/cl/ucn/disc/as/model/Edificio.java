@@ -1,10 +1,10 @@
 package cl.ucn.disc.as.model;
 
 import io.ebean.annotation.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
+
+import java.util.List;
+
 
 import javax.persistence.Entity;
 import java.time.Instant;
@@ -20,6 +20,8 @@ import java.time.Instant;
 @Builder
 @Entity
 @Getter
+@Setter
+//como funciona el setter
 public class Edificio extends BaseModel {
 
     /**
@@ -34,12 +36,14 @@ public class Edificio extends BaseModel {
     @NotNull
     private String direccion;
 
-    public static class EdificioBuilder {
-        public Edificio build() {
-            return new Edificio(
-                    this.nombre,
-                    this.direccion
-            );
-        }
+    private List<Departamento> departamentos;
+
+    public Edificio(String nombre, String direccion) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+    }
+
+    public void addDepartamento(Departamento departamento) {
+        departamentos.add(departamento);
     }
 }
