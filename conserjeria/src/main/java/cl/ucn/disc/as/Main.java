@@ -30,7 +30,7 @@ import java.util.Optional;
  *@author Profesor Diego Urrutia-Astorga
   */
 @Slf4j
-public final class TheMain {
+public final class Main {
     /**
     *The Main
      *
