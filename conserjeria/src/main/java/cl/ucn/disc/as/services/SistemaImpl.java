@@ -157,6 +157,7 @@ public class SistemaImpl implements Sistema {
         Faker faker = new Faker(locale);
 
         for (int i = 0; i < 1000; i++) {
+
             Persona persona = Persona.builder()
                     .rut(fvs.bothify("#######-#"))
                     .nombre(faker.name().firstName())
