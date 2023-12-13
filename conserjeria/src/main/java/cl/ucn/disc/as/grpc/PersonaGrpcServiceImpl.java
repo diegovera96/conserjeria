@@ -23,9 +23,9 @@ public final class PersonaGrpcServiceImpl extends PersonaGrpcServiceGrpc.Persona
         log.debug("Retrieving Persona with RUT: {}", request.getRut());
         PersonaGrpc personaGrpc = PersonaGrpc.newBuilder()
                 .setRut(request.getRut())
-                .setNombre("José")
-                .setApellidos("Alcayaga")
-                .setEmail("jose@ucn.cl")
+                .setNombre("Diego")
+                .setApellidos("Vera")
+                .setEmail("diego.vera@alumnos.ucn.cl")
                 .setTelefono("+56912345678")
                 .build();
 

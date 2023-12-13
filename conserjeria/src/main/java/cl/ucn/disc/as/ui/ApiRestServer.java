@@ -119,7 +119,7 @@ public final class ApiRestServer{
             log.error("BAD port:" + port);
             throw new IllegalArgumentException("BAD port:"+port);
         }
-        log.debug("Starting api rest server in port {} .."+port);
+        log.debug("Starting ApiRestServer on port: {}", port);
 
         // the server
         Javalin app = createAndConfigureJavalin();
