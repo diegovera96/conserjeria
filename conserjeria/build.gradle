@@ -140,7 +140,7 @@ idea {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'cl.ucn.disc.as.main'
+                'Main-Class': 'cl.ucn.disc.as.Main'
         )
     }
 }
