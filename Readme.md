@@ -42,9 +42,9 @@ docker-compose up --build
 
 1. Expland conserjeria
 2. Press port where app is executed
-![Alt text](/home/fergus/Documentos/conserjeria/conserjeria/assets/DOCKERHUB.png?raw=true "Title")
+![Alt text](https://github.com/diegovera96/conserjeria/blob/main/conserjeria/assets/DOCKERHUB.png?raw=true "Title")
 3. Now you can use differents URL
-![Alt text](/home/fergus/Documentos/conserjeria/conserjeria/assets/WEBPAGE.png?raw=true "Title")
+![Alt text](https://github.com/diegovera96/conserjeria/blob/main/conserjeria/assets/WEBPAGE.png?raw=true "Title")
 
 ### Endpoints
    4. http://localhost:7071/ -> API
