@@ -13,6 +13,7 @@ git@github.com:diegovera96/conserjeria.git
 
 # DOCKER IMAGE AND COMPOSE
 ```bash
+cd conserjeria
 docker-compose up -d
 ```
 # DOCKER MARIADB
