@@ -22,15 +22,17 @@ docker-compose -f docker-compose-mariadb.yml up -d
 
 > NOTE:
 >
-> MARIADB IS SET PORT: 3308:3306
+> MariaDB use PORT: 3308:3306
 >
-> API IS SET PORT: 7071:7070
+> APP with MariaDB use PORT: 7071:7070
 >
 > IF YOU WANT MODIFY PORTS, YOU CAN DO IT IN docker-compose-mariadb.yml
-
-> NOTE:
 > 
-> GRPC IS SET PORT: 50123:50123
+> App with SQLite use PORT: 7070:7070
+> 
+> IF YOU WANT MODIFY PORTS, YOU CAN DO IT IN docker-compose.yml
+> 
+> GRPC use PORT: 50123:50123
 > 
 > IF YOU WANT MODIFY PORTS, YOU CAN DO IT IN Main.java
 
